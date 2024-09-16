@@ -122,7 +122,7 @@ define('forum/register', [
         } else if (username.length > ajaxify.data.maximumUsernameLength) {
             showError(username_notify, '[[error:username-too-long]]');
         } else if (!utils.isUserNameValid(username) || !userslug) {
-            showError(username_notify, '[[error:invalid-username]]');
+            showError(username_notify, `[[error:invalid-username, "${username}suffix"]]`);
         } else {
             Promise.allSettled([
                 api.head(`/users/bySlug/${username}`, {}),
